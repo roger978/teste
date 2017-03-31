@@ -1,21 +1,21 @@
 package br.sceweb.teste;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import br.sceweb.modelo.Empresa;
 import br.sceweb.modelo.EmpresaDAO;
 
-public class UC01CadastrarEmpresa {
+public class UC02ConsultaEmpresa {
 
 	static EmpresaDAO empresaDAO;
 
 	static Empresa empresa;
 
-	@BeforeClass	
+	@BeforeClass
+
 	public static void setUpBeforeClass() throws Exception {
 
 		empresaDAO = new EmpresaDAO();
@@ -34,21 +34,13 @@ public class UC01CadastrarEmpresa {
 
 	}
 
-	
+	public Empresa consulta(String cnpj) {
 
-	@After
-	public void excluiEmpresa() throws Exception {
-
-		empresaDAO.exclui("89424232000180");
-
+		return empresa;
 	}
-
 
 	@Test
-	public void CT01UC01FBCadastra_com_sucesso() {
-
-		assertEquals(1, empresaDAO.adiciona(empresa));
-
+	public void CT01UC02FBConsultar_empresa_com_sucesso() {
+		assertTrue(empresa.equals(empresaDAO.consultaEmpresa("60430951000122")));
 	}
-	
 }
